@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="title"></div>
+
+
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    class MyComponent extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {isHot: true, title: '测试work', data: new Date()}
+        }
+
+        changeState() {
+            // this
+        }
+
+        render() {
+            console.log(this.props, this.context, this)
+            return <h1 className="name"
+                       onClick={this.changeState()}>{this.state.title}11{this.state.data.toLocaleTimeString()}}</h1>
+        }
+    }
+
+    ReactDOM.render(<MyComponent name="true"/>, document.getElementById('title'))
+</script>
+
+</body>
+</html>
