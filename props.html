@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="title"></div>
+<div id="title1"></div>
+
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+
+    // 类式组件
+    class MyComponent extends React.Component {
+        static propTypes = {
+            name: PropTypes.string.isRequired,
+            sex: PropTypes.number,
+            age: PropTypes.number,
+        }
+        static defaultProps = {
+            sex: 1,
+            age: 22,
+        }
+
+        constructor(props) {
+            super(props);
+        }
+
+        render() {
+            const {name, age, sex} = this.props
+            console.log(this.props)
+            return (
+                <ul className="name">
+                    <li>{name}</li>
+                    <li>{age}</li>
+                    <li>{sex === 1 ? '男' : '女'}</li>
+                </ul>
+            )
+        }
+    }
+
+    // MyComponent.propTypes = {
+    //     name: PropTypes.string.isRequired,
+    //     sex: PropTypes.number,
+    //     age: PropTypes.number,
+    // }
+    // MyComponent.defaultProps = {
+    //     sex: 1,
+    //     age: 22,
+    // }
+
+
+    // 函数式组件
+    function MyComponent1(props) {
+        const {name, age, sex} = props
+        return (
+            <ul className="name">
+                <li>{name}</li>
+                <li>{age}</li>
+                <li>{sex === 1 ? '男' : '女'}</li>
+            </ul>
+        )
+    }
+
+    ReactDOM.render(<MyComponent {...{name: 'ducaho', age: 18, sex: 1}}/>, document.getElementById('title'))
+    ReactDOM.render(<MyComponent1 {...{name: 'ducaho1111'}}/>, document.getElementById('title1'))
+</script>
+
+</body>
+</html>

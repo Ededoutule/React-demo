@@ -14,19 +14,26 @@
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 <script type="text/babel">
     class MyComponent extends React.Component {
+        state = {isHot: true, title: '测试work', data: new Date()}
+
         constructor(props) {
             super(props);
-            this.state = {isHot: true, title: '测试work', data: new Date()}
+            // this.state = {isHot: true, title: '测试work', data: new Date()}
+            // this.changeState = this.changeState.bind(this)
         }
 
-        changeState() {
+        changeState = () => {
             // this
+            console.log(this)
+            this.setState({data: new Date()})
         }
 
         render() {
             console.log(this.props, this.context, this)
             return <h1 className="name"
-                       onClick={this.changeState()}>{this.state.title}11{this.state.data.toLocaleTimeString()}}</h1>
+                       onClick={this.changeState}>
+                {this.state.title}11{this.state.data.toLocaleTimeString()}
+            </h1>
         }
     }
 
