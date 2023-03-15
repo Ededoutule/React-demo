@@ -18,18 +18,44 @@
     // 类式组件
     class MyComponent extends React.Component {
 
+
+        state = {isHot: true}
+
+        componentDidMount() {
+
+        }
+
         showData = () => {
-            console.log(this.refs.input1.innerText)
+            this.setState({isHot: !this.state.isHot})
+            console.log(this.input1.value)
+        }
+
+        buluShowData = () => {
+            console.log(this)
+            console.log(this.input2.value)
+        }
+        // 类里面的回调
+        saveInput = (e) => {
+            this.input1 = e;
+            console.log(e)
         }
 
         render() {
             const {name, age, sex} = this.props
+            const {isHot} = this.state
             return (
-                <ul className="name">
-                    <li ref="input1">{name}</li>
-                    <li>{age}</li>
-                    <li onClick={this.showData}>{sex === 1 ? '男' : '女'}</li>
-                </ul>
+                <div className="name">
+                    {
+                        // 内里面的回调
+                        // <input ref={e => {
+                        //     this.input1 = e;
+                        //     console.log(e)
+                        // }}></input>
+                    }
+                    <input ref={this.saveInput}></input>
+                    <button onClick={this.showData}>{age}{isHot ? '鸭肉' : '鸡肉'}</button>
+                    <input ref={e => this.input2 = e} onBlur={this.buluShowData}></input>
+                </div>
             )
         }
     }
