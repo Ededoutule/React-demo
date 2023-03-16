@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+    </style>
+</head>
+<body>
+
+<div id="title"></div>
+<div id="title1"></div>
+
+<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js">
+    <script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+
+    // 类式组件
+    class MyComponent extends React.Component {
+
+
+        state = {isHot: 1}
+
+        // 组件将要挂载的钩子
+        componentWillMount() {
+            console.log('Count---componentWillMount')
+        }
+
+        // 控制组件更新的阀门
+        shouldComponentUpdate() {
+            console.log('Count---shouldComponentUpdate')
+            return true
+        }
+
+        // 组件更新完毕的钩子
+        componentDidUpdate() {
+            console.log('Count---componentDidUpdate')
+        }
+
+        // 组件更新之前的钩子
+        componentWillUpdate() {
+            console.log('Count---componentWillUpdate')
+        }
+
+        // 组件挂载完毕的钩子
+        componentDidMount() {
+            // this.timer = setInterval(() => {
+            //     let {isHot} = this.state
+            //     this.setState({isHot: isHot - 0.1})
+            //     if (isHot <= 0) this.state.isHot = 1
+            //
+            // }, 200)
+            console.log('Count---componentDidMount')
+        }
+
+        // 组件卸载之前的钩子
+        componentWillUnmount() {
+            // console.log(this.timer)
+            // clearInterval(this.timer)
+            console.log('Count---componentWillUnmount')
+        }
+
+        // 卸载组件按钮的回调
+        showData = () => {
+            //卸载组件
+            // ReactDOM.unmountComponentAtNode(document.getElementById('title'))
+            const {isHot} = this.state
+            this.setState({isHot: isHot + 1})
+        }
+        // 强制更新组件
+        force = () => {
+            this.forceUpdate()
+        }
+
+        render() {
+            console.log('Count---render')
+            const {isHot} = this.state
+            return (
+                <div className="name">
+                    <h1 style={{opacity: isHot}}>{isHot}</h1>
+                    <button onClick={this.showData}>{isHot ? '鸭肉' : '鸡肉'}</button>
+                    <button onClick={this.force}>强制更新</button>
+                </div>
+            )
+        }
+    }
+
+    class MyFather extends React.Component {
+
+        render() {
+            return (
+                <div>
+                    <h1>father</h1>
+                    <MyComponent {...{name: 'ducaho', age: 18, sex: 1}}/>
+                </div>
+            )
+        }
+    }
+
+    ReactDOM.render(<MyFather {...{name: 'ducaho', age: 18, sex: 1}}/>, document.getElementById('title'))
+</script>
+
+</body>
+</html>
