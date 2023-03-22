@@ -1,0 +1,26 @@
+.footers {
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  .left {
+    display: flex;
+    align-items: center;
+    .checkbox1 {
+      width: 15px;
+      height: 15px;
+      margin-right: 10px;
+    }
+    .count {
+      font-size: 18px;
+    }
+  }
+  .right {
+    font-size: 16px;
+    box-sizing: border-box;
+    border: aqua solid 1px;
+    border-radius: 10px;
+    padding: 5px;
+    background-color: aqua;
+  }
+}
