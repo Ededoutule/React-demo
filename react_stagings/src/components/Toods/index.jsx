@@ -4,10 +4,25 @@ import './index.scss'
 
 import ToodItem from "../ToodItem";
 class Toods extends Component {
+
     render() {
+        const { toolsList, updateState, deleteState } = this.props
+
         return (
             <div className="tools">
-                <ToodItem />
+                {
+                    toolsList.map((element) => {
+                        return (
+                            <ToodItem
+                                key={element.id}
+                                element={element}
+                                updateState={updateState}
+                                deleteState={deleteState}
+                            />
+                        )
+                    })
+                }
+
             </div>
         );
     }
