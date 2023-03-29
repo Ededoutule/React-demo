@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="title"></div>
+<div id="title1"></div>
+
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+
+    // 类式组件
+    class MyComponent extends React.Component {
+
+
+        state = {date: new Date()}
+
+        componentDidMount() {
+            this.timer =  setInterval(() => {
+                this.setState({date: new Date()})
+            })
+        }
+        componentWillUnmount() {
+            clearInterval(this.timer)
+        }
+
+        render() {
+            return (
+                <div className="name">
+                    <input></input>
+                    <button> '鸭肉' : '鸡肉</button>
+                    <div>现在是{this.state.date.toTimeString()}</div>
+                </div>
+            )
+        }
+    }
+
+
+    ReactDOM.render(<MyComponent {...{name: 'ducaho', age: 18, sex: 1}}/>, document.getElementById('title'))
+
+</script>
+
+</body>
+</html>
