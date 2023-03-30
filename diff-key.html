@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="demo"></div>
+
+
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/prop-types@15.6/prop-types.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+    class Person extends React.Component {
+        state = {
+            person: [
+                { id: 1, name: '小明', age: 18 },
+                { id: 2, name: '小李', age: 19 }
+            ]
+        }
+
+
+        add = () => {
+            let {person} = this.state
+            this.setState({
+                person: [...person, {id: person.length + 1, name: '小王', age: 27}]
+            })
+
+        }
+
+        render () {
+            return (
+                <div>
+                    <h2>展示人员信息</h2>
+                    <button onClick={this.add}>添加一个小王</button>
+                    <ul>
+                        {
+                            this.state.person.map((personObj, index) => {
+                                return <li key={index}>key:{index}---{ personObj.name }---{ personObj.age }<input type="text"/></li>
+                            })
+                        }
+                    </ul>
+                    <h3>key</h3>
+                    <ul>
+                        {
+                            this.state.person.map((personObj, index) => {
+                                return <li key={personObj.key}>key:{personObj.key}---{ personObj.name }---{ personObj.age }<input type="text"/></li>
+                            })
+                        }
+                    </ul>
+                </div>
+            )
+        }
+    }
+
+
+    ReactDOM.render(<Person />, document.getElementById('demo'))
+
+</script>
+
+</body>
+</html>
