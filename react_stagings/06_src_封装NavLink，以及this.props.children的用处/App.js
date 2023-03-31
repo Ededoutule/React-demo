@@ -15,7 +15,7 @@ class App extends Component {
                 例如子组件为MyNavLink，使用子组件时标签中添加内容后，子组件可以通过this.props.children获取内容
 
                 <MyNavLink activeClassName="cc" to="/header">header</MyNavLink>
-
+                
                 MyNavLink组件中，this.props.children为header
 
 
