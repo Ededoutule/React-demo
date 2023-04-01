@@ -15,6 +15,7 @@ class App extends Component {
                 <MyNavLink activeClassName="cc" to="/header">header</MyNavLink>
                 <MyNavLink activeClassName="cc" to="/test">body</MyNavLink>
                 {/*
+                模糊匹配，严格匹配
                     名词约定：
                         path： Route组件中path属性的值
                         pathname: 指的如下格式
