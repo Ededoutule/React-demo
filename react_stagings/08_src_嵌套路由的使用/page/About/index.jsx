@@ -1,15 +1,16 @@
 import React, {Component} from 'react';
+import axios from "axios";
 import PubSub from 'pubsub-js'
-import './index.sass'
-class Body extends Component {
+
+class Header extends Component {
 
     render() {
         return (
             <div>
-                Body页面
+                Header页面
             </div>
         );
     }
 }
 
-export default Body;
+export default Header;
