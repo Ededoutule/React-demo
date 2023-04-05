@@ -6,14 +6,11 @@ import Home from './page/Home'
 
 import {Redirect, Route, Switch} from "react-router-dom";
 import MyNavLink from "./components/MyNavLink";
-import Header from "./components/Header";
 class App extends Component {
     render() {
         return (
             <div className="tool-warp" >
-
                 <div className="nav">
-                    <Header></Header>
                     <MyNavLink activeClassName="cc" to="/about">about</MyNavLink>
                     <MyNavLink activeClassName="cc" to="/home">home</MyNavLink>
                 </div>
