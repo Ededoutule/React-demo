@@ -28,5 +28,5 @@ const root = createRoot(document.getElementById("root"));
 // })
 
 
-// 此处需要用Provider包裹App,目的是让App所有的后代组件
+
 root.render(<Provider store={store}><App/></Provider>)
