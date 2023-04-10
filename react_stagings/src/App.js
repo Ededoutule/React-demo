@@ -1,55 +1,33 @@
 // 创建外壳组件App
-import React,{ Component } from "react";
+import React,{ Component, lazy, Suspense } from "react";
+import {NavLink, Route} from "react-router-dom";
+// import About from "./page/About";
+// import Home from "./page/Home";
 
+// 通过lazy实现路由懒加载
+const Home = lazy(() => import("./page/Home"))
+const About = lazy(() => import("./page/About"))
 class App extends Component {
-    state = {
-        count: 0
-    }
-
-    addCount = () => {
-
-        /*
-        * setState(stateChange, [callback]) ------- 对象式的setState
-        *  1， stateChange为状态改变对象
-        *  2.  callback是可选的回调函数，它在状态更新完毕，界面也更新后（render调用后）才被调用
-        *
-        * */
-        // this.setState({count: this.state.count + 1}, ()=>{
-        //     console.log(this.state.count)
-        // })
-
-
-
-
-
-        /*
-        * setState(updater, [callback]) ------- 函数式的setState
-        *  1， updater为返回stateChange对象的函数
-        *  2.  updater可以接收state和props
-        *  2.  callback是可选的回调函数，它在状态更新完毕，界面也更新后（render调用后）才被调用
-        *
-        * */
-        this.setState((state, props) => {
-            return {count: state.count + 1}
-        })
-
-        /*
-        * 总结
-        *  对象式的setState是函数式的setState的简写方式
-        *  使用原则：
-        *        1， 如果新状态不依赖于原状态=====》使用对象方式
-        *        2， 如果新状态依赖于原状态=====》 使用函数方式
-        *        3， 如果需要在setState()执行后获取最新的状态数据，要在第二个callback函数中读取
-        * */
-
-
-    }
 
     render() {
         return (
             <div >
-                count: {this.state.count}
-                <button onClick={this.addCount}>+</button>
+                <NavLink to="/home">home</NavLink>
+                <NavLink to="/about">about</NavLink>
+                {/*
+                    suspense的字面意思就是悬而不决，用在平时开发中，
+                    就可以理解为还没有完成的事，你不知道啥时候完成。也就是异步，异步加载组件，异步请求数据。
+
+                    这样在打包代码时，可以显著减少主包的体积，加快加载速度，从而提升用户体验；而当路由切换时，
+                    加载新的组件代码，代码加载是异步的过程，此时suspense就会进如fallback，那我们看到的就是loading，
+                    显式的告诉用户正在加载，当代码加载完成就会展示A组件的内容，整个loading状态不用开发者去控制。
+
+                */}
+                <Suspense fallback={<h1>Loading...</h1>}>
+                    <Route path="/home" component={Home}></Route>
+                    <Route path="/about" component={About}></Route>
+                </Suspense>
+
             </div>
         )
     }
