@@ -25,7 +25,11 @@ function Message() {
                 {
                     navList.map(item => {
                         return (
-                            <NavLink key={item.id} to={`/home/message/${item.name}/${item.title}`}>{item.name}</NavLink>
+                            /*<NavLink key={item.id} to={`/home/message/detail/${item.name}/${item.title}`}>{item.name}</NavLink>*/
+
+                            /*<NavLink key={item.id} to={`/home/message/detail?name=${item.name}&title=${item.title}`}>{item.name}</NavLink>*/
+
+                            <NavLink key={item.id} to={{pathname: '/home/message/detail'}} state={{name: item.name, title: item.title}}>{item.name}</NavLink>
                         )
                     })
                 }

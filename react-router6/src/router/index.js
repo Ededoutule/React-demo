@@ -15,7 +15,8 @@ const routers = [
             path: 'message',
             element: <Message/>,
             children: [{
-                path: ':id/:title',
+                // path: 'detail/:id/:title',
+                path: 'detail',
                 element: <Detali/>,
             }]
         }]

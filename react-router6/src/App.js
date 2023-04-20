@@ -1,6 +1,6 @@
 
 import './App.css';
-import {NavLink, Routes, Route, Navigate, useRoutes} from "react-router-dom";
+import {NavLink, Routes, Route, Navigate, useRoutes, useNavigate} from "react-router-dom";
 import Home from './page/Home'
 import About from './page/About'
 import router from './router'
@@ -10,11 +10,30 @@ function App() {
 
     // 通过useRoutes生成路由表
     const routers = useRoutes(router)
+
+    const navigate = useNavigate()
+
+    const navLinkHandle = type => {
+      return () => {
+        type === 'back' ? navigate(-1) : 
+          type === 'go' ? navigate(1) : 
+            type === 'about' ? navigate(type) : ''
+      }
+    }
+
+
+
+
+
     return (
       <div className="App">
+
+          <button onClick={navLinkHandle('go')}>前进</button>
+          <button onClick={navLinkHandle('back')}>后退</button>
+          <button onClick={navLinkHandle('about')}>到About</button>
           <NavLink to="/home">Home</NavLink>
           <NavLink to="/about">About</NavLink>
-{/*          <Routes>
+          {/*          <Routes>
 
                  Route的Component改为element了，里面带的内容改为<Home />
 
@@ -26,10 +45,6 @@ function App() {
 
              <Route path="/" element={<Navigate to="home" />}></Route>
           </Routes>*/}
-
-
-
-
 
           {/*
             注册路由表
