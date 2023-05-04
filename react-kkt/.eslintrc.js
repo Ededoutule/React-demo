@@ -3,7 +3,6 @@ module.exports = {
   root: true,
 
   // 此项是用来指定eslint解析器的，解析器必须符合规则，babel-eslint解析器是对babel解析器的包装使其与ESLint解析
-  parser: 'babel-eslint',
 
   // 此项是用来指定javaScript语言类型和风格，sourceType用来指定js导入的方式，默认是script，此处设置为module，指某块导入方式
   parserOptions: {
@@ -13,7 +12,10 @@ module.exports = {
     *      - 版本号：3, 5（默认）, 6, 7, 8, 9, 10, 11, 12
     *      - 年份命名法：2015(=6), 2016(=7), 2017(8) ...
     */
+    parser: '@babel/eslint-parser',
     ecmaVersion: 'latest',
+    requireConfigFile: false,
+    project: ['./tsconfig.json'],
     /* ecmaVersion: 指定 ECMA 语法版本
     *  取值：
     *      - "latest": 使用最新版本，现在 (2021) 等同于 12
@@ -39,23 +41,21 @@ module.exports = {
   env: {
     browser: true,
     node: true,
-    commonjs: true,
     es6: true,
-    amd: true,
     es2021: true
   },
   // https://github.com/standard/standard/blob/master/docs/RULES-en.md
   // 此项是用来配置标准的js风格，就是说写代码的时候要规范的写，如果你使用vs-code我觉得应该可以避免出错
   extends: [
     'plugin:react/recommended',
-    'standard-with-typescript',
-    'vue'
+    'standard-with-typescript'
   ],
   // 此项是用来提供插件的，插件名称省略了eslint-plugin-，下面这个配置是用来规范html的
   plugins: [
-    'html',
-    'flow-vars',
-    'react'
+    'react',
+    '@typescript-eslint',
+    'react-hooks',
+    'eslint-plugin-react'
   ],
   /*
    下面这些rules是用来设置从插件来的规范代码的规则，使用必须去掉前缀eslint-plugin-
@@ -151,9 +151,8 @@ module.exports = {
     curly: 1, // 必须使用 if(){} 中的{}
     // common js
     'no-duplicate-imports': 1
-  },
+  }
 }
-
 
 // 'rules': {
 //   "comma-dangle": ["error", "never"], //是否允许对象中出现结尾逗号

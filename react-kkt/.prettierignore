@@ -1,0 +1,6 @@
+# .prettierignore表示prettier忽略不需要去检查的目录（可以理解为对了错了是我的事，不需要你管）
+# Ignore artifacts:
+node_modules
+dist
+.vscode
+.prettierignore

@@ -2,7 +2,6 @@
 module.exports = {
   trailingComma: "none",
 
-  semi: false,
   singleQuote: true,
   // 每行末尾自动添加分号
   semi: false,
@@ -20,6 +19,9 @@ module.exports = {
   arrowParens: 'avoid',
   // 换行长度，默认80
   printWidth: 80,
+  jsxBracketSameLine: true,
+  insertPragma: false,
+  requirePragma: false,
 }
   // 常用配置相关解释
 // printWidth: 100, // 超过最大值换行
